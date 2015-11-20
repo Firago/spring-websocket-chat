@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+    <head>
+        <meta charset="utf-8"/>
+        <title>iSAPS</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/0.4.16/toaster.min.css" rel="stylesheet"/>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="css/main.css" rel="stylesheet"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.5/jquery.touchSwipe.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.2/angular.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.2/angular-cookies.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-translate/2.8.1/angular-translate.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-translate-storage-cookie/2.8.1/angular-translate-storage-cookie.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/0.4.16/toaster.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.0.3/sockjs.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+    </head>
+    <body>
+        <div id="header">
+            <navbar logout="true"></navbar>
+        </div>
+        <div class="content" ng-controller="ChatController">
+            <toaster-container toaster-options="{'time-out': 3000, 'animation-class': 'toast-top-center'}"></toaster-container>
+            <div id="swipe-sidebar">
+                <div id="user-list">
+                    <ul>
+                        <li ng-repeat="participant in participants" ng-click="privateSending(participant.username)">
+                            <div id="user">
+                                <span class="glyphicon glyphicon-edit" ng-show="participant.typing"></span>
+                                <span class="glyphicon glyphicon-user" ng-show="!participant.typing"></span>
+                                <span class="margin-5">{{participant.username}}</span>
+                                <span class="glyphicon glyphicon-menu-right float-right"></span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="swipe-area">
+                    <span class="swipe-icon glyphicon glyphicon-menu-right"></span>
+                </div>
+            </div>
+            <div id="chat-box">
+                <div id="messages">
+                    <ul>
+                        <li class="message" ng-repeat="message in messages">
+                            <span print-message></span>
+                        </li>
+                    </ul>
+                </div>
+                <div id="message-input">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="You will send this message to {{sendTo}}" aria-describedby="message-addon" ng-model="newMessage" ng-keyup="$event.keyCode == 13 ? sendMessage() : startTyping()">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button" ng-click="sendMessage()">
+                                <span class="glyphicon glyphicon-send"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.container -->
+        <!-- App -->
+        <script src="js/app.js"></script>
+        <script src="js/controllers.js"></script>
+        <script src="js/directives.js"></script>
+        <script src="js/services.js"></script>
+        <script src="js/utils.js"></script>
+    </body>
+</html>
