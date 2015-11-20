@@ -7,9 +7,9 @@ Demo version of this project is available at http://ws-chat.cfapps.io/
 
 Tasks for 0.0.2 version:  
 1) prevent login with same usernames  
-2) change main page background (use [Trianglify library](http://qrohlf.com/trianglify/) instead of static bacground image)  
+2) change main page background (use [Trianglify library](http://qrohlf.com/trianglify/) instead of static background image)  
 3) implement socket close mechanism on logout  
-4) chat page i18n (currently only login page is translated in both english and russion)  
+4) chat page i18n (currently only login page is translated in both english and russian)  
 5) improve chat GUI
 
 This project is a part of ASIS (Awesome Student Information System), which will replace old information system at my university because of its uselessness.
